@@ -92,7 +92,7 @@ def main():
         if uploaded_file:
             st.success(f"✅ {uploaded_file.name}")
             
-            if st.button("🔄 Analiz Et", type="primary", use_container_width=True):
+            if st.button("🔄 Analiz Et", type="primary", width="stretch"):
                 with st.spinner("Dosya analiz ediliyor..."):
                     core = HacizTakipCore()
                     
@@ -274,7 +274,7 @@ def main():
                 
                 st.dataframe(
                     df_display,
-                    use_container_width=True,
+                    width="stretch",
                     height=500,
                     column_config={
                         'Risk': st.column_config.TextColumn('Risk', width='small'),
@@ -315,7 +315,7 @@ def main():
                     hole=0.4
                 )
                 fig_pie.update_layout(showlegend=True, height=350)
-                st.plotly_chart(fig_pie, use_container_width=True)
+                st.plotly_chart(fig_pie, width="stretch")
             
             with col2:
                 st.subheader("Mal Türü Dağılımı")
@@ -338,7 +338,7 @@ def main():
                     color_discrete_sequence=px.colors.qualitative.Set2
                 )
                 fig_bar.update_layout(showlegend=False, height=350)
-                st.plotly_chart(fig_bar, use_container_width=True)
+                st.plotly_chart(fig_bar, width="stretch")
             
             # Zaman çizelgesi
             st.subheader("📅 Düşme Tarihi Takvimi (Önümüzdeki 90 Gün)")
@@ -371,8 +371,12 @@ def main():
                     hover_data=['Kalan']
                 )
                 fig_timeline.update_layout(height=400, showlegend=True)
-                fig_timeline.add_vline(x=datetime.now(), line_dash="dash", line_color="blue", annotation_text="Bugün")
-                st.plotly_chart(fig_timeline, use_container_width=True)
+                # Bugün çizgisi (hata verirse atla)
+                try:
+                    fig_timeline.add_vline(x=datetime.now().timestamp() * 1000, line_dash="dash", line_color="blue")
+                except:
+                    pass  # Grafik çizgisiz de çalışır
+                st.plotly_chart(fig_timeline, width="stretch")
             else:
                 st.info("Önümüzdeki 90 gün içinde düşecek haciz bulunmuyor.")
         
@@ -497,7 +501,7 @@ Bu rapor Haciz Takip Sistemi tarafından otomatik oluşturulmuştur.
         st.divider()
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("🎮 Demo Verisiyle Dene", use_container_width=True):
+            if st.button("🎮 Demo Verisiyle Dene", width="stretch"):
                 # Demo veri oluştur
                 core = HacizTakipCore()
                 demo_kayitlar = []
