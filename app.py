@@ -86,7 +86,7 @@ def main():
         uploaded_file = st.file_uploader(
             "Excel veya CSV dosyası yükleyin",
             type=['xlsx', 'xls', 'csv'],
-            help="Ziraat Dosya Listesi, Araç/Taşınmaz Haciz Raporu veya Sağlam Köprü CSV çıktısı"
+            help="Borçlu Listesi, Araç/Taşınmaz Haciz Raporu veya Sağlam Köprü CSV çıktısı"
         )
         
         if uploaded_file:
@@ -490,7 +490,7 @@ Bu rapor Haciz Takip Sistemi tarafından otomatik oluşturulmuştur.
             <br>
             <h4>Desteklenen Formatlar:</h4>
             <ul style="list-style: none; padding: 0;">
-                <li>✅ Ziraat Dosya Listesi (.xlsx)</li>
+                <li>✅ Borçlu Listesi (.xlsx)</li>
                 <li>✅ Araç/Taşınmaz Haciz Raporu (.xlsx)</li>
                 <li>✅ Sağlam Köprü CSV çıktıları</li>
             </ul>
